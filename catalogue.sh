@@ -13,7 +13,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-MONGODB_HOST="mongodb.devopspractice.shop"
+MONGODB_HOST=mongodb.devopspractice.shop
 
 if [ $ID -ne 0 ]
     then
@@ -45,11 +45,16 @@ dnf install nodejs -y &>> $LOGFILE
 
 VALIDATE $? "Installing nodejs18"
 
-useradd roboshop &>> $LOGFILE
+id roboshop
+if [ $id -ne 0 ]
+    then 
+        useradd roboshop 
+        VALIDATE $? "ROBOSHOP USER Creation"
+    else
+         echo -e "$R ROBOSHOP USER ALREADY EXIST....$Y SKIPPING... $N"    
+fi         
 
-VALIDATE $? "Creating ROBOSHOP USER"
-
-mkdir /app &>> $LOGFILE
+mkdir -p /app &>> $LOGFILE
 
 VALIDATE $? "Creating app Directory"
 
@@ -59,7 +64,7 @@ VALIDATE $? "Downloading Catalogue application"
 
 cd /app 
 
-unzip /tmp/catalogue.zip &>> $LOGFILE
+unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping Catalogue"
 
