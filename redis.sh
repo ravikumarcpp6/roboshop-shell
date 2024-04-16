@@ -5,7 +5,7 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
-exec &>$LOGFILE
+#exec &>$LOGFILE
 
 echo "The script started executing at:$TIMESTAMP" &>> $LOGFILE
 
@@ -32,26 +32,26 @@ VALIDATE(){
     fi            
 }
 
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y 
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>> $LOGFILE
 
 VALIDATE $? "Installing Remi Release"
 
-dnf module enable redis:remi-6.2 -y
+dnf module enable redis:remi-6.2 -y &>> $LOGFILE
 
 VALIDATE $? "Enabling Remis"
 
-dnf install redis -y
+dnf install redis -y &>> $LOGFILE
 
 VALIDATE $? "installing Redis"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>> $LOGFILE
 
 VALIDATE $? "Allowing Remote Connections"
 
-systemctl enable redis
+systemctl enable redis &>> $LOGFILE
 
 VALIDATE $? "Enabling Redis"
 
-systemctl start redis
+systemctl start redis &>> $LOGFILE
 
 VALIDATE $? "Redis started"
