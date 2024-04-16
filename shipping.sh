@@ -98,4 +98,4 @@ VALIDATE $? "Load Schema"
 
 systemctl restart shipping &>>$LOGFILE
 
-VALIDATTE $? "Restarting shipping"
+VALIDATE $? "Restarting shipping"
