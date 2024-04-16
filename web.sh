@@ -13,8 +13,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-MONGODB_HOST=mongodb.devopspractice.shop
-
 if [ $ID -ne 0 ]
     then
         echo -e "$R ERROR:: PLEASE RUN WITH ROOT USER $N"
@@ -33,31 +31,31 @@ VALIDATE(){
     fi            
 }
 
-dnf install nginx -y 
+dnf install nginx -y &>>$LOGFILE
 
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx
+systemctl enable nginx &>>$LOGFILE
 
 VALIDATE $? "Enable nginx"
 
-systemctl start nginx
+systemctl start nginx &>>$LOGFILE
 
 VALIDATE $? "starting nginx"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 
 VALIDATE $? "Deleted Default Content"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>>$LOGFILE
 
 VALIDATE $? "Download web application"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>$LOGFILE
 
 VALIDATE $? "Goto html page" 
 
-unzip -o /tmp/web.zip
+unzip -o /tmp/web.zip &>>$LOGFILE
 
 VALIDATE $? "Unzipping Web"
  
@@ -65,7 +63,7 @@ cp /home/centos/roboshop-shell/roboshop.conf  /etc/nginx/default.d/roboshop.conf
  
 VALIDATE $? "roboshop configuration"
 
-systemctl restart nginx 
+systemctl restart nginx  &>>$LOGFILE
 
 VALIDATE $? "nginx restart"
 
