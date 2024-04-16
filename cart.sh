@@ -60,13 +60,15 @@ curl -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOG
 
 VALIDATE $? "Downloading cart application" 
 
-cd /app 
+cd /app &>> $LOGFILE
+
+VALIDATE $? "moving to app directory"
 
 unzip -o /tmp/cart.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping cart"
 
-cd /app
+cd /app &>> $LOGFILE
 
 VALIDATE $? "Moving to app Directory"
 

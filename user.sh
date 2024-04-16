@@ -56,19 +56,21 @@ fi
 
 mkdir -p /app &>> $LOGFILE
 
-VALIDATE $? "Creating app Directory"
+VALIDATE $? "Creating app Directory" 
 
-curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
 VALIDATE $? "Downloading user application" 
 
-cd /app 
+cd /app &>> $LOGFILE
+
+VALIDATE $? "moving to app directory"
 
 unzip -o /tmp/user.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping user"
 
-cd /app
+cd /app  &>> $LOGFILE
 
 VALIDATE $? "MOVING to app Directory"
 
