@@ -13,6 +13,7 @@ ID=$(id -u)
 if [ $ID -ne 0 ]
     then 
         echo -e "$R ERROR...please run with root user $N"
+        exit 1
     else
         echo -e "$G You are root user $N"  
 fi          
