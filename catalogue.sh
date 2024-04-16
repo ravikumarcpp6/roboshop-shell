@@ -70,6 +70,10 @@ unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping Catalogue"
 
+cd /app &>> $LOGFILE
+
+VALIDATE $? "moving to app directory"
+
 npm install &>> $LOGFILE
 
 VALIDATE $? "Installing Dependencies" 
