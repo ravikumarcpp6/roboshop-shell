@@ -68,6 +68,10 @@ unzip -o /tmp/user.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping user"
 
+cd /app
+
+VALIDATE $? "MOVING to app Directory"
+
 npm install &>> $LOGFILE
 
 VALIDATE $? "Installing Dependencies" 
