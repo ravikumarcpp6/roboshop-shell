@@ -78,7 +78,7 @@ VALIDATE $? "Installing Dependencies"
 
 #use absolute path for cart.service
 
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>> $LOGFILE
+cp /home/centos/roboshop-shell/cart.service  /etc/systemd/system/cart.service &>> $LOGFILE
 
 VALIDATE $? "copying cart service file"
 
