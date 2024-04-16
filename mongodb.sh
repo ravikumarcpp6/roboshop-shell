@@ -8,7 +8,7 @@ N="\e[0m"
 ID=$(id -u)
 if [ $ID -ne 0 ]
     then 
-        echo "$R ERROR...please run with root user $N"
+        echo -e "$R ERROR...please run with root user $N"
     else
-        echo "$G You are root user $N"  
+        echo -e "$G You are root user $N"  
 fi          
