@@ -62,7 +62,7 @@ VALIDATE $? "Downloading cart application"
 
 cd /app &>> $LOGFILE
 
-VALIDATE $? "moving to app directory"
+VALIDATE $? "Moving to app directory"
 
 unzip -o /tmp/cart.zip &>> $LOGFILE
 
