@@ -42,15 +42,25 @@ if [ $? -ne 0 ]
          echo -e "$R ROBOSHOP USER ALREADY EXIST....$Y SKIPPING... $N"    
 fi 
 
-mkdir -p /app
+mkdir -p /app &>> $LOGFILE 
 
-curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip
+VALIDATE $? "app Directory creation"
 
-cd /app
+curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
 
-mvn clean package
+VALIDATE $? "Download Shipping Application"
 
-mv target/shipping-1.0.jar shipping.jar
+cd /app &>> $LOGFILE
+
+VALIDATE $? "Moving to app directory"
+
+mvn clean package &>> $LOGFILE
+
+VALIDATE $? "Installing Dependencies"
+
+mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
+
+VALIDATE $? "Renaming JAR FILE"
 
 cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>>$LOGFILE
 
@@ -68,9 +78,11 @@ systemctl start shipping &>> $LOGFILE
 
 VALIDATE $? "Starting shipping"
 
-dnf install mysql -y &>>$LOGFILE
+dnf install mysql -y &>>$LOGFILE &>> $LOGFILE
 
-mysql -h mysql.devopspractice.shop -uroot -pRoboShop@1 < /app/schema/shipping.sql
+VALIDATE $? "Installing Mysql"
+
+mysql -h mysql.devopspractice.shop -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$LOGFILE
 
 VALIDATE $? "Load Schema"
 
