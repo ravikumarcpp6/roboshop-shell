@@ -54,6 +54,14 @@ cd /app &>> $LOGFILE
 
 VALIDATE $? "Moving to app directory"
 
+unzip -o /tmp/shipping.zip
+
+VALIDATE $? "Unzipping the shipping file"
+
+cd /app &>> $LOGFILE
+
+VALIDATE $? "Moving to app directory"
+
 mvn clean package &>> $LOGFILE
 
 VALIDATE $? "Installing Dependencies"
