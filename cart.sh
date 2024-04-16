@@ -66,6 +66,10 @@ unzip -o /tmp/cart.zip &>> $LOGFILE
 
 VALIDATE $? "Unzipping cart"
 
+cd /app
+
+VALIDATE $? "Moving to app Directory"
+
 npm install &>> $LOGFILE
 
 VALIDATE $? "Installing Dependencies" 
@@ -78,7 +82,7 @@ VALIDATE $? "copying cart service file"
 
 systemctl daemon-reload &>> $LOGFILE
 
-VALIDATE $? "System daemon-reloaded"
+VALIDATE $? "Cart daemon-reloaded"
 
 systemctl enable cart &>> $LOGFILE
 
