@@ -44,10 +44,6 @@ dnf install redis -y
 
 VALIDATE $? "installing Redis"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf
-
-VALIDATE $? "Allowing Remote Connections"
-
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf
 
 VALIDATE $? "Allowing Remote Connections"
