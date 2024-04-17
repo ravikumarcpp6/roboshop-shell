@@ -80,9 +80,9 @@ VALIDATE $? "Installing Dependencies"
 
 #use absolute path for catalogue.service
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/roboshop-shell/catalogue.service  /etc/systemd/system/catalogue.service &>> $LOGFILE
 
-VALIDATE $? "copying catalogue service file"
+VALIDATE $? "copying catalogue service file to systemd"
 
 systemctl daemon-reload &>> $LOGFILE
 
