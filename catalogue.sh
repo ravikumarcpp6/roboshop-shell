@@ -13,7 +13,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-MONGODB_HOST="mongodb.devopspractice.shop"
+#MONGODB_HOST="mongodb.devopspractice.shop"
 
 if [ $ID -ne 0 ]
     then
@@ -104,7 +104,7 @@ dnf install mongodb-org-shell -y  &>> $LOGFILE
 
 VALIDATE $? "Installing mongodb client"
 
-mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
+mongo --host mongodb.devopspractice.shop </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "Loading Catalogue Data into MongoDB"
 
